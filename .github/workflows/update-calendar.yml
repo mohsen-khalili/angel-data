@@ -1,0 +1,27 @@
+name: Update Iran calendar
+
+on:
+  schedule:
+    # Every six hours, so a month start announced on the evening of the 29th is in by morning.
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -I scripts/update_iran_calendar.py
+      - name: Commit when the calendar changed
+        run: |
+          if git diff --quiet; then echo "no change"; exit 0; fi
+          git config user.name "angel-data bot"
+          git config user.email "actions@users.noreply.github.com"
+          git commit -am "calendar: $(date -u +%F) update"
+          git push

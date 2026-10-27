@@ -1,0 +1,14 @@
+{
+  "id": "iran",
+  "name": "Official calendar of Iran",
+  "source": "Calendar Center, Institute of Geophysics, University of Tehran, as published on time.ir",
+  "checked": "2026-10-27",
+  "starts": [
+    {
+      "year": 1448,
+      "month": 5,
+      "first": "2026-10-12",
+      "seen": "2026-10-27"
+    }
+  ]
+}
